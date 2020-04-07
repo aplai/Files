@@ -1,0 +1,117 @@
+// -----------------------------------
+// Controlling LEDs over the Internet and blinking Name
+// -----------------------------------
+
+/* First, let's create our "shorthand" for the pins
+Same as in the Blink an LED example:
+led1 is D6, led2 is D7 */
+
+int led1 = D6;
+int led2 = D7;
+
+// Last time, we only needed to declare pins in the setup function.
+// This time, we are also going to register our Particle function
+
+void setup()
+{
+
+   // Here's the pin configuration, same as last time
+   pinMode(led1, OUTPUT);
+   pinMode(led2, OUTPUT);
+
+   // We are also going to declare a Particle.function so that we can turn the LED on and off from the cloud.
+   Particle.function("led",ledToggle);
+   // This is saying that when we ask the cloud for the function "led", it will employ the function ledToggle() from this app.
+
+   // For good measure, let's also make sure both LEDs are off when we start:
+   digitalWrite(led1, LOW);
+   digitalWrite(led2, LOW);
+
+}
+
+
+void loop()
+{
+   // Nothing to do here
+}
+
+// We're going to have a super cool function now that gets called when a matching API request is sent
+// This is the ledToggle function we registered to the "led" Particle.function earlier.
+
+int ledToggle(String command) {
+    
+
+    if (command=="play") {
+        
+    //L
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        delay(1000);
+
+        digitalWrite(led1,HIGH);    //dash
+        digitalWrite(led2,HIGH);
+        delay(1000);
+
+        digitalWrite(led1,LOW);     
+        digitalWrite(led2,LOW);
+        delay(1000);
+
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        delay(1000);
+        
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+        
+        
+        digitalWrite(led1,LOW);     //space
+        digitalWrite(led2,LOW);
+        delay(2000);
+        
+    //A
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        delay(1000);
+
+        digitalWrite(led1,HIGH);    //dash
+        digitalWrite(led2,HIGH);
+        delay(1000);
+
+        digitalWrite(led1,LOW);     //space
+        digitalWrite(led2,LOW);
+        delay(2000);
+
+    //I
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        delay(1000);
+        
+        digitalWrite(led1,HIGH);    //dot
+        digitalWrite(led2,HIGH);
+        delay(500);
+
+        digitalWrite(led1,LOW);
+        digitalWrite(led2,LOW);
+        delay(2000);
+        
+        return 1;
+    }
+    
+}
